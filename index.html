@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Path to Your Heart</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- CRT OVERLAY (scanlines + chromatic aberration) -->
+  <div class="crt-overlay"></div>
+  <div class="crt-flicker"></div>
+
+  <!-- AUTH SCREEN -->
+  <div id="auth-screen" class="screen active">
+    <div class="auth-container">
+      <div class="pixel-heart-lock" id="heart-lock">
+        <canvas id="heart-lock-canvas" width="96" height="96"></canvas>
+      </div>
+      <h1 class="auth-title">THE PATH TO<br>YOUR HEART</h1>
+      <p class="auth-subtitle">ONLY MY FAVORITE PERSON KNOWS THIS...</p>
+      <div id="question-container">
+        <p id="question-text" class="question-text"></p>
+        <div class="input-wrapper">
+          <input type="text" id="answer-input" class="answer-input pixel-input" autocomplete="off" placeholder="TYPE HERE...">
+          <button id="submit-btn" class="submit-btn pixel-btn">OK</button>
+        </div>
+        <p id="auth-feedback" class="auth-feedback"></p>
+        <div class="question-dots">
+          <span class="dot" id="dot-0"></span>
+          <span class="dot" id="dot-1"></span>
+          <span class="dot" id="dot-2"></span>
+        </div>
+      </div>
+      <!-- Hidden backdoor pixel -->
+      <div id="backdoor" style="position:fixed;bottom:0;right:0;width:5px;height:5px;cursor:default;z-index:9999;"></div>
+    </div>
+  </div>
+
+  <!-- LOADING SCREEN -->
+  <div id="loading-screen" class="screen">
+    <div class="loading-container">
+      <h2 class="loading-text">LOADING LOVE...</h2>
+      <div class="progress-bar-container pixel-border">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <p class="loading-percent" id="loading-percent">0%</p>
+      <div class="loading-hearts">
+        <span class="loading-heart-icon">&#9829;</span>
+        <span class="loading-heart-icon">&#9829;</span>
+        <span class="loading-heart-icon">&#9829;</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="game-screen" class="screen">
+    <div class="game-hud pixel-border-bottom">
+      <div class="hud-left">
+        <span class="level-label" id="level-label">LVL 1</span>
+      </div>
+      <div class="hud-center">
+        <span class="hud-title">THE PATH TO YOUR HEART</span>
+      </div>
+      <div class="hud-right">
+        <span class="heartbreak-icon">&#9829;</span>
+        <span class="hud-x">x</span>
+        <span id="death-counter">0</span>
+        <span class="heartbreak-label">HEARTBREAKS</span>
+      </div>
+    </div>
+    <canvas id="game-canvas"></canvas>
+    <!-- Level 4 password prompt -->
+    <div id="password-overlay" class="password-overlay hidden">
+      <div class="password-box pixel-border">
+        <p class="bridge-prompt"> THE BRIDGE ONLY APPEARS<br>FOR THOSE WHO REMEMBER THE SECRET CODE...</p>
+        <div class="password-letters" id="password-letters"></div>
+        <input type="text" id="password-input" class="password-input pixel-input" autocomplete="off" placeholder="> TYPE THE WORD...">
+        <p id="password-hint" class="password-hint hidden"> HINT: IT'S THE SAME ANSWER YOU GAVE AT THE VERY BEGINNING!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENDING SCREEN -->
+  <div id="ending-screen" class="screen">
+    <canvas id="ending-canvas"></canvas>
+    <div id="envelope-container" class="envelope-container">
+      <div class="pixel-envelope" id="envelope">
+        <canvas id="envelope-canvas" width="200" height="160"></canvas>
+        <p class="envelope-label"> CLICK TO OPEN</p>
+      </div>
+    </div>
+    <div id="letter-container" class="letter-container hidden">
+      <div class="letter-scroll rpg-box">
+        <div id="letter-content" class="letter-content"></div>
+        <span class="rpg-cursor" id="rpg-cursor">&#9660;</span>
+        <button id="continue-btn" class="continue-btn pixel-btn hidden">CONTINUE &#9829;</button>
+      </div>
+    </div>
+    <div id="heart-formation" class="heart-formation hidden"></div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
